@@ -9,7 +9,9 @@ jobs:
     steps:
       - name: Import GPG key
         run: |
-          echo "${{ secrets.MAVEN_GPG_PRIVATE_KEY }}" | base64 --decode | gpg --import
+          echo "***" | base64 --decode | gpg --batch --yes --passphrase "${{ secrets.GPG_PASSPHRASE }}" --import
+        env:
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
       - name: Debug GPG
         run: |
           gpg --version
