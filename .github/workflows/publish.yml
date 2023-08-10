@@ -23,7 +23,7 @@ jobs:
           gpg --batch --yes --import private-key.gpg
           gpg --list-secret-keys --keyid-format LONG
 
-      - name: Create settings.xml with server-id: ossrh
+      - name: Create settings.xml with server-id:"ossrh"
         run: |
           echo "<settings><servers><server><id>ossrh</id><username>${{ secrets.OSSRH_USERNAME }}</username><password>${{ secrets.OSSRH_TOKEN }}</password></server></servers></settings>" > /home/runner/.m2/settings.xml
 
