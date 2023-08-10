@@ -1,4 +1,4 @@
-name: Publish package to the Maven Central Repositoryd
+name: Publish package to the Maven Central Repository
 on:
   push:
     branches: [publish]
@@ -7,13 +7,6 @@ jobs:
     runs-on: ubuntu-latest
     environment: test
     steps:
-      - name: Import GPG key
-        run: |
-          echo -n "${{ secrets.MAVEN_GPG_PRIVATE_KEY }}" | tr -d '\n' | base64 --decode | gpg --batch --yes --passphrase "${{ secrets.GPG_PASSPHRASE }}" --import
-      - name: Debug GPG
-        run: |
-          gpg --version
-          gpg --list-keys
       - uses: actions/checkout@v3
       - name: Set up Maven Central Repository
         uses: actions/setup-java@v3
